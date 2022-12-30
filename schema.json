@@ -1,0 +1,156 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "bb-component-SuperOdometer",
+    "friendlyName": "Super Odometer",
+    "description": "An Odometer component for Budibase.",
+    "icon": "Gauge2",
+    "styles": [ "padding", "size", "border" ],
+    "settings": [
+      {
+        "type": "text",
+        "key": "title",
+        "label": "Title",
+        "defaultValue": "New Super Gauge"
+      },
+      {
+        "type": "select",
+        "key": "arcSize",
+        "label": "Arc Size",
+        "options": [
+          { "label": "90 Degress", "value": "90" },
+          { "label": "120 Degress", "value": "120" },
+          { "label": "180 Degress", "value": "180" },
+          { "label": "240 Degress", "value": "240" },
+          { "label": "270 Degress", "value": "270" },
+          { "label": "360 Degress", "value": "360" }
+        ],
+        "defaultValue": "240"
+      },
+      {
+        "type": "select",
+        "key": "gaugeMinSize",
+        "label": "Gauge Minimum Size",
+        "options": [
+          { "label": "Small", "value": "128px" },
+          { "label": "Medium", "value": "256px" },
+          { "label": "Large", "value": "384px" }
+        ],
+        "defaultValue": "256px"
+      },
+      {
+        "type": "number",
+        "key": "min",
+        "label": "Minimum",
+        "defaultValue": 0
+      },
+      {
+        "type": "number",
+        "key": "max",
+        "label": "Maximum",
+        "defaultValue": 1000
+      },
+      {
+        "type": "text",
+        "key": "value",
+        "label": "Value",
+        "defaultValue": 300
+      },
+      {
+        "type": "boolean",
+        "key": "showTicks",
+        "label": "Show Ticks",
+        "defaultValue": true
+      },
+      {
+        "type": "boolean",
+        "key": "showAdvanced",
+        "label": "Show Advanced Settings",
+        "defaultValue": false
+      },
+      {
+        "section": true,
+        "name": "Advanced Settings",
+        "dependsOn": "showAdvanced",
+        "settings": [ 
+          {
+            "type": "color",
+            "key": "trackColor",
+            "label": "Track Color"
+          },
+          {
+            "type": "color",
+            "key": "needleColor",
+            "label": "Needle Color"
+          },
+          {
+            "type": "color",
+            "key": "centerColor",
+            "label": "Center Knob Color"
+          },
+          {
+            "type": "color",
+            "key": "tickLabelColor",
+            "label": "Tick Label Color"
+          },   
+          {
+            "type": "select",
+            "key": "labelSize",
+            "label": "Label Size",
+            "options": [
+              { "label": "Small", "value": "0.7rem" },
+              { "label": "Medium", "value": "1rem" },
+              { "label": "Large", "value": "1.2rem" },
+              { "label": "Extra Large", "value": "1.5rem" }
+            ],
+            "defaultValue": "1rem"
+          },
+          {
+            "type": "color",
+            "key": "valueColor",
+            "label": "Value Color"
+          },
+          {
+            "type": "select",
+            "key": "needleAnimation",
+            "label": "Needle Animation",
+            "options": [
+              { "label": "None", "value": "none" },
+              { "label": "Spring", "value": "spring" },
+              { "label": "Tweened", "value": "tweened" }
+            ],
+            "defaultValue": "spring"
+          }
+        ]
+      },
+      {
+        "section": true,
+        "name": "Tick Settings",
+        "dependsOn": "showTicks",
+        "settings": [
+          {
+            "type": "number",
+            "key": "majorTicks",
+            "label": "Major Ticks",
+            "defaultValue": 10,
+            "min": 1
+          },
+          {
+            "type": "number",
+            "key": "minorTicks",
+            "label": "Minor Ticks",
+            "defaultValue": 5,
+            "min": 1
+          },
+          {
+            "type": "boolean",
+            "key": "showTickLabels",
+            "label": "Show Tick Labels",
+            "defaultValue": true
+          }
+        ]
+      }
+    ]
+  }
+}
