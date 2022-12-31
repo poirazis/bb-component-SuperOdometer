@@ -20,7 +20,7 @@
   export let needleAnimation
 
   // Properties so set value Label options
-  export let labelSize
+  export let valueSize
 
   // Properties to set Major and Minor Ticks
   export let showTicks
@@ -53,7 +53,7 @@
         {showTickLabels}
         {majorTicks}
         {minorTicks}
-        {labelSize}
+        {valueSize}
         {arcSize}
         {gaugeMinSize}
       />

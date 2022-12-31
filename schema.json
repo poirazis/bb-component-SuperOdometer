@@ -12,7 +12,7 @@
         "type": "text",
         "key": "title",
         "label": "Title",
-        "defaultValue": "New Super Gauge"
+        "defaultValue": "New Super Odometer"
       },
       {
         "type": "select",
@@ -96,15 +96,14 @@
           },   
           {
             "type": "select",
-            "key": "labelSize",
-            "label": "Label Size",
+            "key": "valueSize",
+            "label": "Value Size",
             "options": [
-              { "label": "Small", "value": "0.7rem" },
-              { "label": "Medium", "value": "1rem" },
-              { "label": "Large", "value": "1.2rem" },
-              { "label": "Extra Large", "value": "1.5rem" }
+              { "label": "Small", "value": "S" },
+              { "label": "Medium", "value": "M" },
+              { "label": "Large", "value": "L" }
             ],
-            "defaultValue": "1rem"
+            "defaultValue": "M"
           },
           {
             "type": "color",

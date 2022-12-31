@@ -19,7 +19,7 @@
     export let centerColor  
     export let tickLabelColor  
 
-	export let labelSize
+	export let valueSize = "M"
 
 	export let showTicks = false
   	export let showTickLabels = false
@@ -28,12 +28,12 @@
 
 	// Array of configuration settigns for each Odometer variation
 	let gaugeTypeMap = [];
-	gaugeTypeMap[90] =  { startAngle: -90, endAngle:0, innerRadius: 232, outerRadius:236, innerArcRadius: 88, cornerRadius:10, canvas: { width:256, height: 256 }, pivot: {x: 236, y: 236}, valuePos: {x: 206, y: 214} }
-	gaugeTypeMap[120] = { startAngle: -60, endAngle:60, innerRadius: 124, outerRadius:128, innerArcRadius: 40, cornerRadius:10, canvas: { width:256, height: 148 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 110} }
-	gaugeTypeMap[180] = { startAngle: -90, endAngle:90, innerRadius: 124, outerRadius:128, innerArcRadius: 40, cornerRadius:10, canvas: { width:256, height: 148 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 118} }
-	gaugeTypeMap[240] = { startAngle: -120, endAngle:120, innerRadius: 124, outerRadius:128, innerArcRadius: 40, cornerRadius:10, canvas: { width:256, height: 192 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 122} }
-	gaugeTypeMap[270] = { startAngle: -180, endAngle:90, innerRadius: 124, outerRadius:128, innerArcRadius: 40, cornerRadius:10, canvas: { width:256, height: 276 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 122} }
-	gaugeTypeMap[360] = { startAngle: 0, endAngle:360, innerRadius: 124, outerRadius:128, innerArcRadius: 40, cornerRadius:10, canvas: { width:256, height: 276 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 134} }
+	gaugeTypeMap[90] =  { startAngle: -90, endAngle:0, innerRadius: 232, outerRadius:236, innerArcRadius: 96, cornerRadius:10, canvas: { width:256, height: 256 }, pivot: {x: 236, y: 236}, valuePos: {x: 200, y: 208} }
+	gaugeTypeMap[120] = { startAngle: -60, endAngle:60, innerRadius: 124, outerRadius:128, innerArcRadius: 48, cornerRadius:10, canvas: { width:256, height: 148 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 108} }
+	gaugeTypeMap[180] = { startAngle: -90, endAngle:90, innerRadius: 124, outerRadius:128, innerArcRadius: 48, cornerRadius:10, canvas: { width:256, height: 148 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 120} }
+	gaugeTypeMap[240] = { startAngle: -120, endAngle:120, innerRadius: 124, outerRadius:128, innerArcRadius: 48, cornerRadius:10, canvas: { width:256, height: 192 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 120} }
+	gaugeTypeMap[270] = { startAngle: -180, endAngle:90, innerRadius: 124, outerRadius:128, innerArcRadius: 48, cornerRadius:10, canvas: { width:256, height: 276 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 120} }
+	gaugeTypeMap[360] = { startAngle: 0, endAngle:360, innerRadius: 126, outerRadius:128, innerArcRadius: 48, cornerRadius:10, canvas: { width:256, height: 276 }, pivot: {x: 128, y: 128}, valuePos: {x: 128, y: 128} }
 	
 	let gaugeConfig
 	$: gaugeConfig = gaugeTypeMap[arcSize];
@@ -67,6 +67,8 @@
 	$: min, max, generateTicks( majorTicks , minorTicks , gaugeConfig )
 	
 	$: valueAngle = scale($_value);
+
+	$: _textBaseline = (arcSize == 360) ? "middle" : "bottom"
 	
 	$: trackArc = d3arc()
 		.innerRadius(innerRadius)
@@ -110,9 +112,8 @@
 
 <div class="svg-box" 
     style:min-width={gaugeMinSize}
-    style:--labelSize={labelSize}
     style:--needleColor={needleColor || "var(--spectrum-global-color-gray-400)" }
-    style:--valueColor={ valueColor || "var(--spectrum-global-color-gray-800)" }
+    style:--valueColor={valueColor || "var(--spectrum-global-color-gray-700)" }
     style:--trackColor={trackColor || "var(--spectrum-global-color-gray-400)" }
     style:--centerColor={centerColor || "var(--spectrum-alias-background-color-default)" }
     style:--tickLabelColor={tickLabelColor || "var(--spectrum-global-color-gray-600)" }
@@ -143,7 +144,7 @@
 			{/each}
 		{/if}
 
-        <text class="value" transform="translate({valuePos.x} {valuePos.y})">
+        <text class="spectrum-Heading spectrum-Heading--size{valueSize}" dominant-baseline={_textBaseline} transform="translate({valuePos.x} {valuePos.y})">
             {Math.round($_value)}
         </text>
 
@@ -199,9 +200,7 @@
 		text-anchor: middle;
 	}
 
-	.value {
-		font-weight: 700;
-		font-size: var(--labelSize);
+	.spectrum-Heading {
 		text-anchor: middle;
 		fill: var(--valueColor);
 	}
