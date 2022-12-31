@@ -1,8 +1,11 @@
 # Bb-component-SuperOdometer
-This is a readme for your new Budibase plugin.
+An Odometer Component for Budibase
 
 # Description
 An Odometer component for Budibase.
+
+<img src="assets/preview.png" alt="Odometer Preview" width="850px"/>
+
 
 Find out more about [Budibase](https://github.com/Budibase/budibase).
 
