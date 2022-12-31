@@ -207,7 +207,7 @@
 
 	.title {
 		text-anchor: middle;
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		fill: var(--spectrum-global-color-gray-600);
 	}
 </style>
