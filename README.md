@@ -1,6 +1,3 @@
-# Bb-component-SuperOdometer
-An Odometer Component for Budibase
-
 # Description
 An Odometer component for Budibase.
 
