@@ -3,21 +3,22 @@
 	import { backInOut } from 'svelte/easing';
 	import { arc as d3arc } from 'd3-shape';
 	import { scaleLinear } from 'd3-scale';
-    import { writable } from 'svelte/store';
+  import { writable } from 'svelte/store';
 
 	export let title = ""
-    export let arcSize = 120
+  export let arcSize = 120
 	export let gaugeMinSize
 
 	export let min = 0
 	export let max = 1000
 	export let value = 350
-    export let needleAnimation
-    export let trackColor  
-    export let valueColor
-    export let needleColor  
-    export let centerColor  
-    export let tickLabelColor  
+	export let precision
+	export let animationType
+	export let trackColor  
+	export let valueColor
+	export let needleColor  
+	export let centerColor  
+	export let tickLabelColor  
 
 	export let valueSize = "M"
 
@@ -51,20 +52,20 @@
 	let _majorTicks = []
 	let _minorTicks = []
 
-    let _value = writable(); 
-    $:  _value.set(Number(value));
+	let _value = writable(); 
+	$: _value.set(value);
 
-    $: if ( needleAnimation === "spring") { 
-            _value = spring(min, { stiffness: .1 });
-        } else if ( needleAnimation === "tweened" ) {
-            _value = tweened(min, { easing: backInOut, duration: 750 });
-        }
+	$: if (animationType === "spring") {
+			_value = spring(50, { stiffness: .1 })
+		} else if (animationType === "tweened") {
+			_value = tweened(50, { easing: backInOut, duration: 750 })
+		}
 
 	$: scale = scaleLinear()
 		.domain([min, max])
 		.range([startAngle, endAngle]);
 	
-	$: min, max, generateTicks( majorTicks , minorTicks , gaugeConfig )
+	$: min, max, precision, generateTicks( majorTicks , minorTicks , gaugeConfig )
 	
 	$: valueAngle = scale($_value);
 
@@ -93,7 +94,7 @@
 		_majorTicks = [];
 		_minorTicks = [];
 		while ( _pos <= max ) {
-			_majorTicks.push({ angle:scale(Number(_pos)) , label: Math.round(_pos) });
+			_majorTicks.push({ angle:scale(Number(_pos)) , label: _pos.toFixed(precision) });
 			while ((_minorPos <= _pos + _majorStep) && _minorPos <= max )
 			{
 				_minorTicks.push ( { angle: scale(_minorPos) , label: ""} )
@@ -144,9 +145,9 @@
 			{/each}
 		{/if}
 
-        <text class="spectrum-Heading spectrum-Heading--size{valueSize}" dominant-baseline={_textBaseline} transform="translate({valuePos.x} {valuePos.y})">
-            {Math.round($_value)}
-        </text>
+		<text class="spectrum-Heading spectrum-Heading--size{valueSize}" dominant-baseline={_textBaseline} transform="translate({valuePos.x} {valuePos.y})">
+			{$_value.toFixed(precision)}
+		</text>
 
 		<text class="title" transform="translate({canvas.width / 2} {canvas.height})">
 			{title.toUpperCase()}

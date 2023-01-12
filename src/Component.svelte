@@ -10,6 +10,7 @@
   export let min
   export let max
   export let value = 200
+  export let precision 
   export let arcSize
 
   export let trackColor
@@ -17,7 +18,7 @@
   export let needleColor
   export let centerColor
   export let tickLabelColor
-  export let needleAnimation
+  export let animationType
 
   // Properties so set value Label options
   export let valueSize
@@ -43,7 +44,8 @@
         {min}
         {max}
         value={_value}
-        {needleAnimation}
+        {precision}
+        {animationType}
         {valueColor}
         {trackColor}
         {needleColor}
