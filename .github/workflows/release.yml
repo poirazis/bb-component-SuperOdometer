@@ -16,7 +16,7 @@ jobs:
           node-version: 20 # Update to a recent Node version
           cache: "yarn" # Cache Yarn dependencies for faster builds
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Build the production bundle
         run: |
           release_version=$(cat package.json | jq -r '.version')
