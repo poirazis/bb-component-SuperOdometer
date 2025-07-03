@@ -3,7 +3,7 @@
   "metadata": {},
   "schema": {
     "name": "bb-component-SuperOdometer",
-    "friendlyName": "Super Odometer",
+    "friendlyName": "Super Charts - Odometer",
     "description": "An Odometer component for Budibase.",
     "icon": "Gauge2",
     "styles": ["padding", "size", "border"],

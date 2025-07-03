@@ -13,7 +13,8 @@
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
     "d3": "^7.9.0",
-    "svelte": "^4.2.19"
+    "svelte": "^4.2.20",
+    "@poirazis/supercomponents-shared": "^1.0.0"
   },
   "devDependencies": {
     "@budibase/backend-core": "^2.33.14",

@@ -176,8 +176,6 @@
       _minorTicks.shift();
     }
   }
-
-  $: console.log(valueSize);
 </script>
 
 <div
